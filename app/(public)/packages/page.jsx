@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { packages } from '@/lib/mock-data/packages';
 
 export default function PackagesPage() {
-  // শুধুমাত্র অ্যাকটিভ প্যাকেজগুলো ফিল্টার করা হচ্ছে
+ 
   const activePackages = packages.filter(pkg => pkg.isActive);
 
   return (

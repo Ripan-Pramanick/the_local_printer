@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="flex flex-col gap-6">
           <Link href="/" className="shrink-0 inline-block">
             <div className="flex items-center gap-2">
-               <Image src="/logo.webp" alt="Logo" width={160} height={160} />
+               <Image src="/logo-white.webp" alt="Logo" width={160} height={160} />
             </div>
           </Link>
           <p className="text-white/80 text-[14px] leading-relaxed pr-4">
