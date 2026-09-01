@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@theme {
+  --color-brand-navy: #1F466B;
+  --color-brand-orange: #F45116;
+  --color-brand-light: #F7F8FA;
+  --color-brand-darkText: #163A5C;
+  --color-brand-muted: #6B7280;
+  --color-brand-border: #E5E7EB;
+
+  --font-sans: var(--font-inter), sans-serif;
+
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-search: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+  
+  --width-screen-xl: 1280px;
+}
+
+body {
+  background-color: var(--color-brand-light);
+  color: var(--color-brand-darkText);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  overflow-x: hidden;
+}
