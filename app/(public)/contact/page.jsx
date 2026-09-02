@@ -1,10 +1,59 @@
+'use client';
+
+import { useState } from 'react';
 import PageHero from '@/components/common/PageHero';
 import ContactStrip from '@/components/contact/ContactStrip';
 import SectionHeader from '@/components/common/SectionHeader';
 import BusinessCTA from '@/components/home/BusinessCTA';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Loader2 } from 'lucide-react';
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ success: false, message: '' });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus({ success: false, message: '' });
+
+    try {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: `Phone: ${formData.phone}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setStatus({ success: true, message: 'Message sent successfully! We will get back to you soon.' });
+        setFormData({ name: '', phone: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus({ success: false, message: data.error || 'Failed to send message. Please try again.' });
+      }
+    } catch (error) {
+      setStatus({ success: false, message: 'An error occurred. Please try again later.' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col w-full bg-brand-light">
       <PageHero 
@@ -13,12 +62,12 @@ export default function ContactPage() {
         subtitle="Have a question, suggestion, or want to list your printing business? Reach out — we typically respond within 24 hours."
         buttons={
           <>
-            <button className="h-[48px] px-8 rounded-full bg-brand-orange text-white font-medium hover:bg-[#E04812] transition flex items-center gap-2">
+            <a href="tel:+918008886365" className="h-[48px] px-8 rounded-full bg-brand-orange text-white font-medium hover:bg-[#E04812] transition flex items-center gap-2">
               <Phone className="w-4 h-4" /> Call Us Now
-            </button>
-            <button className="h-[48px] px-8 rounded-full border border-white/30 text-white font-medium hover:bg-white/10 transition flex items-center gap-2">
+            </a>
+            <a href="mailto:info@thelocalprinter.com" className="h-[48px] px-8 rounded-full border border-white/30 text-white font-medium hover:bg-white/10 transition flex items-center gap-2">
               <Mail className="w-4 h-4" /> Email Us
-            </button>
+            </a>
           </>
         }
       />
@@ -30,31 +79,82 @@ export default function ContactPage() {
           {/* Form Section */}
           <div className="bg-white">
              <SectionHeader badge="SEND A MESSAGE" title="Write to Us" subtitle="Fill in the form and we'll get back to you within one business day." />
-             <form className="mt-[-1rem] space-y-4">
+             
+             {status.message && (
+               <div className={`p-4 mb-6 rounded-lg text-[14px] font-medium ${status.success ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'}`}>
+                 {status.message}
+               </div>
+             )}
+
+             <form onSubmit={handleSubmit} className="mt-[-1rem] space-y-4">
                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                  <div>
                    <label className="block text-[12px] font-bold text-brand-navy mb-1.5 ml-1">Your Name*</label>
-                   <input type="text" placeholder="Enter your full name" className="w-full h-[48px] px-4 rounded-lg border border-brand-border bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand-orange/50 text-[14px]" />
+                   <input 
+                     type="text" 
+                     name="name"
+                     value={formData.name}
+                     onChange={handleChange}
+                     required 
+                     placeholder="Enter your full name" 
+                     className="w-full h-[48px] px-4 rounded-lg border border-brand-border bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand-orange/50 text-[14px]" 
+                   />
                  </div>
                  <div>
                    <label className="block text-[12px] font-bold text-brand-navy mb-1.5 ml-1">Phone Number*</label>
-                   <input type="tel" placeholder="Enter your phone number" className="w-full h-[48px] px-4 rounded-lg border border-brand-border bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand-orange/50 text-[14px]" />
+                   <input 
+                     type="tel" 
+                     name="phone"
+                     value={formData.phone}
+                     onChange={handleChange}
+                     required 
+                     placeholder="Enter your phone number" 
+                     className="w-full h-[48px] px-4 rounded-lg border border-brand-border bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand-orange/50 text-[14px]" 
+                   />
                  </div>
                </div>
                <div>
                  <label className="block text-[12px] font-bold text-brand-navy mb-1.5 ml-1">Email Address*</label>
-                 <input type="email" placeholder="Enter your email" className="w-full h-[48px] px-4 rounded-lg border border-brand-border bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand-orange/50 text-[14px]" />
+                 <input 
+                   type="email" 
+                   name="email"
+                   value={formData.email}
+                   onChange={handleChange}
+                   required 
+                   placeholder="Enter your email" 
+                   className="w-full h-[48px] px-4 rounded-lg border border-brand-border bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand-orange/50 text-[14px]" 
+                 />
                </div>
                <div>
                  <label className="block text-[12px] font-bold text-brand-navy mb-1.5 ml-1">Subject</label>
-                 <input type="text" placeholder="What is this regarding?" className="w-full h-[48px] px-4 rounded-lg border border-brand-border bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand-orange/50 text-[14px]" />
+                 <input 
+                   type="text" 
+                   name="subject"
+                   value={formData.subject}
+                   onChange={handleChange}
+                   placeholder="What is this regarding?" 
+                   className="w-full h-[48px] px-4 rounded-lg border border-brand-border bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand-orange/50 text-[14px]" 
+                 />
                </div>
                <div>
                  <label className="block text-[12px] font-bold text-brand-navy mb-1.5 ml-1">Your Message*</label>
-                 <textarea placeholder="Write your message here..." rows={5} className="w-full p-4 rounded-lg border border-brand-border bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand-orange/50 text-[14px] resize-none"></textarea>
+                 <textarea 
+                   name="message"
+                   value={formData.message}
+                   onChange={handleChange}
+                   required 
+                   placeholder="Write your message here..." 
+                   rows={5} 
+                   className="w-full p-4 rounded-lg border border-brand-border bg-brand-light focus:outline-none focus:ring-2 focus:ring-brand-orange/50 text-[14px] resize-none"
+                 ></textarea>
                </div>
-               <button type="submit" className="h-[48px] px-8 rounded-full bg-brand-orange text-white text-[14px] font-bold hover:bg-[#E04812] transition-colors mt-2">
-                 Send Message
+               <button 
+                 type="submit" 
+                 disabled={loading}
+                 className="h-[48px] px-8 rounded-full bg-brand-orange text-white text-[14px] font-bold hover:bg-[#E04812] transition-colors mt-2 flex items-center justify-center gap-2 disabled:opacity-70 cursor-pointer"
+               >
+                 {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+                 {loading ? 'Sending...' : 'Send Message'}
                </button>
              </form>
           </div>

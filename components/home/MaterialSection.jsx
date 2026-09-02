@@ -50,9 +50,9 @@ const cardVariants = {
     y: 0, 
     scale: 1,
     transition: { 
-      delay: i * 0.04, // ~40ms stagger
+      delay: i * 0.04,
       duration: 0.5, 
-      ease: [0.16, 1, 0.3, 1] // Premium spring-like easeOut
+      ease: [0.16, 1, 0.3, 1] 
     }
   })
 };
@@ -63,7 +63,6 @@ export default function MaterialSection() {
   const mouseY = useMotionValue(0);
   const shouldReduceMotion = useReducedMotion();
 
-  // Desktop subtle radial glow follow
   const handleMouseMove = (e) => {
     if (shouldReduceMotion) return;
     const { currentTarget, clientX, clientY } = e;
@@ -78,10 +77,8 @@ export default function MaterialSection() {
       onMouseMove={handleMouseMove}
       className="relative py-24 px-6 bg-[#FCFDFE] overflow-hidden group/section"
     >
-      {/* 1. Subtle warm radial gradient (Static Base) */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(244,81,22,0.02)_0%,_transparent_60%)] pointer-events-none" />
 
-      {/* 2. Interactive Mouse Glow (Desktop Only, respects reduced motion) */}
       {!shouldReduceMotion && (
         <motion.div
           className="pointer-events-none absolute inset-0 hidden md:block opacity-0 group-hover/section:opacity-100 transition-opacity duration-1000 ease-out z-0"
@@ -91,7 +88,6 @@ export default function MaterialSection() {
         />
       )}
 
-      {/* Performant CSS Keyframes for the subtle float effect */}
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes subtleFloat1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
         @keyframes subtleFloat2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.5px); } }
@@ -103,10 +99,7 @@ export default function MaterialSection() {
 
       <div className="max-w-screen-xl mx-auto relative z-10">
         
-        {/* Header Block */}
         <div className="flex flex-col items-start text-left mb-14">
-          
-          {/* Badge with subtle pulse & hover */}
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -118,7 +111,6 @@ export default function MaterialSection() {
             PRINT ON
           </motion.div>
 
-          {/* Heading with Blur Reveal */}
           <motion.h2 
             initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -129,7 +121,6 @@ export default function MaterialSection() {
             Every Material. Every Format.
           </motion.h2>
 
-          {/* Delayed Description */}
           <motion.p 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -141,17 +132,14 @@ export default function MaterialSection() {
           </motion.p>
         </div>
 
-        {/* Dynamic Grid: 2 cols on mobile, 9 cols on wide desktop */}
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-3 md:gap-4">
           {materialsData.map((mat, i) => {
             const Icon = mat.icon;
             const isFeatured = featuredMaterials.includes(mat.name);
             const shouldFloat = !shouldReduceMotion && (isFeatured || i % 4 === 0);
             
-            // Premium subtle styling for cards
             const cardBg = isFeatured ? 'bg-[#FFF9F5]' : 'bg-white';
-            const cardBorder = isFeatured ? 'border-[#FFE8D6]' : 'border-gray-100/80';
-            const hoverBorder = isFeatured ? 'hover:border-brand-orange/30' : 'hover:border-gray-200';
+            const cardBorder = isFeatured ? 'border-[#FFE8D6]' : 'border-[#e8eaed]';
 
             return (
               <motion.div 
@@ -161,28 +149,28 @@ export default function MaterialSection() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-20px" }}
-                className="group relative"
               >
-                {/* Float Wrapper (CSS Animation pauses on group hover automatically via Tailwind setup if needed, but handled cleanly below) */}
                 <div className={`w-full h-full ${shouldFloat ? `float-${(i % 3) + 1}` : ''}`}>
                   
-                  {/* Actual Interactive Card */}
+                 
                   <div className={`
-                    w-full h-[110px] flex flex-col items-center justify-center p-4 
-                    rounded-[1.25rem] border ${cardBg} ${cardBorder} 
-                    shadow-[0_2px_10px_-4px_rgba(0,0,0,0.03)] 
-                    hover:-translate-y-[5px] hover:scale-[1.015] hover:shadow-[0_12px_24px_-8px_rgba(0,0,0,0.08)] ${hoverBorder}
-                    transition-all duration-300 ease-out cursor-default
+                    group relative overflow-hidden w-full h-[110px] flex flex-col items-center justify-center p-4 
+                    rounded-2xl border-[1.5px] ${cardBg} ${cardBorder} 
+                    shadow-sm cursor-default 
+                    transition-all duration-200 hover:-translate-y-1 hover:border-brand-orange hover:shadow-[0_12px_32px_rgba(232,75,22,0.1)]
                   `}>
                     
+                    {/* Animated Bottom Line (Left to Right)  
+                    <div className="absolute bottom-0 left-0 w-full h-[4px] bg-brand-orange transform scale-x-0 origin-left transition-transform duration-200 ease-in-out group-hover:scale-x-100 z-0"></div> */}
+
                     {/* Animated Icon */}
                     <Icon 
-                      className="w-6 h-6 text-brand-navy mb-3 group-hover:text-brand-orange group-hover:scale-[1.08] group-hover:rotate-[5deg] transition-all duration-300 ease-out" 
+                      className="w-6 h-6 text-brand-navy mb-3 transition-all duration-200 group-hover:scale-105 group-hover:text-brand-orange relative z-10" 
                       strokeWidth={1.5} 
                     />
                     
                     {/* Text */}
-                    <span className="text-[11.5px] font-semibold text-brand-navy leading-tight group-hover:text-brand-orange transition-colors text-center">
+                    <span className="text-[11.5px] font-semibold text-brand-navy leading-tight transition-colors duration-200 group-hover:text-brand-orange text-center relative z-10">
                       {mat.name}
                     </span>
                     

@@ -13,7 +13,7 @@ export default function PageHero({ badge, title, subtitle, buttons, children }) 
         opacity: 0,
         duration: 0.7,
         stagger: 0.12,
-        ease: 'power3.out' // Matched the exact smooth easing of the main HeroSection
+        ease: 'power3.out' 
       });
     }, containerRef);
     return () => ctx.revert();
@@ -22,10 +22,14 @@ export default function PageHero({ badge, title, subtitle, buttons, children }) 
   return (
     <section 
       ref={containerRef} 
-      // Added flexbox centering, min-height, and pt-[120px] to prevent header overlap
-      className="bg-brand-navy min-h-[80vh] md:min-h-[74vh] pt-[3px] w-full flex flex-col justify-center items-center text-center px-4 pt-[120px] pb-16 relative overflow-hidden"
+     
+      className="bg-[radial-gradient(ellipse_at_top,#2E517A_0%,#1B3654_50%,#112338_100%)] min-h-[80vh] md:min-h-[74vh] w-full flex flex-col justify-center items-center text-center px-4 pt-[120px] pb-16 relative overflow-hidden"
     >
+      <div className="absolute bottom-0 left-0 w-full h-[400px] bg-[radial-gradient(ellipse_at_bottom,#F45116_0%,transparent_65%)] opacity-40 pointer-events-none z-0"></div>
+
       <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10 w-full">
+
+    
         
         {badge && (
           <span className="hero-elem inline-block px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/[0.12] text-brand-orange text-[11px] font-bold tracking-widest uppercase mb-6">
@@ -33,7 +37,6 @@ export default function PageHero({ badge, title, subtitle, buttons, children }) 
           </span>
         )}
         
-        {/* Typography scaled to match the main HeroSection perfectly */}
         <h1 className="hero-elem text-[38px] sm:text-[48px] md:text-[56px] font-extrabold tracking-tight mb-4 leading-[1.15] text-white">
           {title}
         </h1>

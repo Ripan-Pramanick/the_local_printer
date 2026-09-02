@@ -1,17 +1,47 @@
+'use client'; 
+
 import PageHero from '@/components/common/PageHero';
 import StatsStrip from '@/components/home/StatsStrip';
 import SectionHeader from '@/components/common/SectionHeader';
 import HowItWorks from '@/components/home/HowItWorks';
-import { MapPin, CheckCircle, Search, Shield, Zap, TrendingUp, Users } from 'lucide-react';
+import { MapPin, CheckCircle, Search, Shield, Zap, TrendingUp, Phone } from 'lucide-react';
 import Link from 'next/link';
+import Button from '@/components/common/Button'; 
 
 export default function AboutPage() {
   return (
     <div className="flex flex-col w-full bg-brand-light">
-      <PageHero 
-        badge="ABOUT OUR PLATFORM"
+      <PageHero
+        badge={
+          <div className="flex items-center justify-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse" />
+            INDIA'S LARGEST GPS-VERIFIED PRINTING DIRECTORY
+          </div>
+        }
         title={<span>About <span className="text-brand-orange">The Local Printer</span></span>}
-        subtitle="We're on a mission to connect every Indian business and individual with the nearest, most trusted printing professionals — instantly and without hassle."
+        subtitle="We're on a mission to connect every Indian business and individual with the nearest, most trusted printing professionals — instantly and effortlessly."
+        
+        buttons={
+          <>
+            <Button
+              href="/search"
+              icon={MapPin}
+              iconPosition="left"
+              className="w-full sm:w-auto h-[48px] px-7 rounded-full bg-brand-orange text-white text-[14px] font-semibold hover:bg-[#E04812] transition-colors shadow-md shadow-brand-orange/20"
+            >
+              Find Printers Near Me
+            </Button>
+
+            <Button
+              href="tel:+910000000000" 
+              icon={Phone}
+              iconPosition="left"
+              className="w-full sm:w-auto h-[48px] px-7 rounded-full bg-white/[0.05] border border-white/20 text-white text-[14px] font-semibold hover:bg-white/10 hover:border-white/30 transition-all"
+            >
+              +91 00000 00000 
+            </Button>
+          </>
+        }
       />
       <StatsStrip />
 
@@ -19,9 +49,9 @@ export default function AboutPage() {
       <section className="py-24 px-6 bg-white">
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <SectionHeader 
-              badge="WHO WE ARE" 
-              title="Built for India's Print Community" 
+            <SectionHeader
+              badge="WHO WE ARE"
+              title="Built for India's Print Community"
               subtitle=""
             />
             <div className="text-brand-muted text-[15px] leading-relaxed space-y-6 max-w-lg mt-[-2rem]">
@@ -31,16 +61,35 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="flex flex-col gap-6">
-            <div className="bg-brand-light p-8 rounded-2xl border border-brand-border/60">
-              <MapPin className="w-8 h-8 text-brand-orange mb-4" />
-              <h3 className="text-[18px] font-bold text-brand-navy mb-2">GPS-First Platform</h3>
-              <p className="text-[14px] text-brand-muted leading-relaxed">Proximity is everything. Our core algorithm is location-based, meaning you always find the closest available experts.</p>
+
+            {/* 1st Card: GPS-First Platform */}
+            <div className="group relative overflow-hidden bg-brand-light p-8 rounded-2xl border-[1.5px] border-[#e8eaed] hover:border-brand-orange hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(232,75,22,0.1)] transition-all duration-200 cursor-default flex flex-col items-start">
+              <div className="absolute bottom-0 left-0 w-full h-[4px] bg-brand-orange transform scale-x-0 origin-left transition-transform duration-200 ease-in-out group-hover:scale-x-100 z-0"></div>
+
+              <MapPin className="w-8 h-8 text-brand-orange mb-4 relative z-10 transition-transform duration-200 group-hover:scale-110" strokeWidth={1.5} />
+
+              <h3 className="text-[18px] font-bold text-brand-navy mb-2 relative z-10">
+                GPS-First Platform
+              </h3>
+              <p className="text-[14px] text-brand-muted leading-relaxed relative z-10">
+                Proximity is everything. Our core algorithm is location-based, meaning you always find the closest available experts.
+              </p>
             </div>
-            <div className="bg-brand-light p-8 rounded-2xl border border-brand-border/60">
-              <CheckCircle className="w-8 h-8 text-brand-orange mb-4" />
-              <h3 className="text-[18px] font-bold text-brand-navy mb-2">Verified Listings</h3>
-              <p className="text-[14px] text-brand-muted leading-relaxed">Quality matters. Every listing marked 'Verified' has passed our authentication checks to ensure reliability.</p>
+
+            {/* 2nd Card: Verified Listings */}
+            <div className="group relative overflow-hidden bg-brand-light p-8 rounded-2xl border-[1.5px] border-[#e8eaed] hover:border-brand-orange hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(232,75,22,0.1)] transition-all duration-200 cursor-default flex flex-col items-start">
+              <div className="absolute bottom-0 left-0 w-full h-[4px] bg-brand-orange transform scale-x-0 origin-left transition-transform duration-200 ease-in-out group-hover:scale-x-100 z-0"></div>
+
+              <CheckCircle className="w-8 h-8 text-brand-orange mb-4 relative z-10 transition-transform duration-200 group-hover:scale-110" strokeWidth={1.5} />
+
+              <h3 className="text-[18px] font-bold text-brand-navy mb-2 relative z-10">
+                Verified Listings
+              </h3>
+              <p className="text-[14px] text-brand-muted leading-relaxed relative z-10">
+                Quality matters. Every listing marked 'Verified' has passed our authentication checks to ensure reliability.
+              </p>
             </div>
+
           </div>
         </div>
       </section>
@@ -56,10 +105,21 @@ export default function AboutPage() {
               { icon: TrendingUp, title: 'Empower Local Business', desc: 'We give small print shops the online visibility to compete with massive corporations.' },
               { icon: Shield, title: 'Privacy by Default', desc: 'Customers don\'t need to share their number just to search. Contact shops directly.' }
             ].map((item, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors">
-                <item.icon className="w-6 h-6 text-brand-orange mb-4" />
-                <h4 className="text-[16px] font-bold text-white mb-2">{item.title}</h4>
-                <p className="text-[13px] text-white/70 leading-relaxed">{item.desc}</p>
+              <div
+                key={i}
+                className="group relative overflow-hidden bg-white/5 border-[1.5px] border-white/10 p-8 rounded-2xl hover:bg-white/10  hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(232,75,22,0.15)] transition-all duration-200 cursor-default flex flex-col items-start"
+              >
+                <div className="absolute bottom-0 left-0 w-full h-[4px] bg-brand-orange transform scale-x-0 origin-left transition-transform duration-200 ease-in-out group-hover:scale-x-100 z-0"></div>
+
+                <item.icon className="w-8 h-8 text-brand-orange mb-5 relative z-10 transition-transform duration-200 group-hover:scale-110" strokeWidth={1.5} />
+
+                <h4 className="text-[17px] font-bold text-white mb-2 relative z-10">
+                  {item.title}
+                </h4>
+
+                <p className="text-[14px] text-white/70 leading-relaxed relative z-10">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -75,12 +135,12 @@ export default function AboutPage() {
             Ready to Find Your Nearest Printer?
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-             <Link href="/search" className="h-[52px] px-8 rounded-full bg-white text-brand-orange font-bold hover:bg-brand-light transition-colors shadow-lg flex items-center">
-               Find Printers Near Me
-             </Link>
-             <Link href="/register?type=business" className="h-[52px] px-8 rounded-full border border-white/30 text-white font-medium hover:bg-white/10 transition-colors flex items-center">
-               List My Business
-             </Link>
+            <Link href="/search" className="h-[52px] px-8 rounded-full bg-white text-brand-orange font-bold hover:bg-brand-light transition-colors shadow-lg flex items-center">
+              Find Printers Near Me
+            </Link>
+            <Link href="/register?type=business" className="h-[52px] px-8 rounded-full border border-white/30 text-white font-medium hover:bg-white/10 transition-colors flex items-center">
+              List My Business
+            </Link>
           </div>
         </div>
       </section>

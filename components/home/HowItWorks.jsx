@@ -22,9 +22,7 @@ export default function HowItWorks() {
       const tl = gsap.timeline({
         scrollTrigger: { trigger: containerRef.current, start: 'top 80%', once: true }
       });
-      // Line draw
       tl.to('.timeline-line', { scaleX: 1, duration: 1, ease: 'power2.inOut', transformOrigin: 'left center' });
-      // Steps reveal
       tl.from('.step-item', { y: 20, opacity: 0, duration: 0.5, stagger: 0.2, ease: 'power2.out' }, "-=0.5");
     }, containerRef);
     return () => ctx.revert();
@@ -40,12 +38,8 @@ export default function HowItWorks() {
         />
         
         <div ref={containerRef} className="relative mt-20 max-w-5xl mx-auto">
-          {/* 
-            Desktop Timeline Line 
-            এখানে -left-[10%] এবং -right-[10%] দেওয়া হয়েছে যাতে লাইনটি 
-            ১ নম্বর এবং ৪ নম্বর সার্কেলের বাইরে বেরিয়ে থাকে (২য় ছবির মতো)।
-          */}
-          <div className="hidden md:block absolute top-[28px] -left-[10%] -right-[10%] h-[2px] bg-brand-orange/20 z-0">
+          {/* Timeline Line constrained exactly between step 1 and step 4 */}
+          <div className="hidden md:block absolute top-[28px] left-[10%] right-[10%] h-[2px] bg-brand-orange/20 z-0">
             <div className="timeline-line absolute top-0 left-0 w-full h-full bg-brand-orange scale-x-0 origin-left"></div>
           </div>
           
