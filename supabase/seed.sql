@@ -1,2 +1,0 @@
--- Seed data scaffold.
--- TODO: insert categories, services, materials, and demo businesses.

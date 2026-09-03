@@ -1,2 +1,0 @@
--- Initial Supabase schema scaffold.
--- TODO: add production tables, indexes, RLS policies, and PostGIS functions.

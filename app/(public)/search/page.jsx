@@ -126,9 +126,9 @@ export default function SearchPage() {
         
         <div className="search-top-block w-full flex flex-col items-center mb-10">
           
-          <div className="flex flex-col xl:flex-row items-center w-full max-w-[1300px] border border-gray-200 rounded-[2rem] xl:rounded-full bg-white shadow-xl shadow-brand-navy/5 p-2 transition-all">
+          <div className="flex flex-col xl:flex-row items-center w-full max-w-[1300px] border border-gray-200 rounded-[24px] xl:rounded-full bg-white shadow-xl shadow-brand-navy/5 p-4 xl:p-2 transition-all">
             
-            <div className="flex-1 flex items-center px-4 py-2 w-full hover:bg-gray-50 rounded-t-[1.5rem] xl:rounded-full transition-colors relative group">
+            <div className="flex-1 flex items-center px-2 xl:px-4 py-3 xl:py-2 w-full hover:bg-gray-50 rounded-t-2xl xl:rounded-full transition-colors relative group border-b border-gray-100 xl:border-none">
               <MapPin className={`w-[22px] h-[22px] mr-3 shrink-0 ${isLocating ? 'text-brand-orange animate-pulse' : 'text-brand-orange'}`} />
               <div className="flex flex-col justify-center w-full">
                 <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-0.5">Location</span>
@@ -150,9 +150,8 @@ export default function SearchPage() {
             </div>
 
             <div className="hidden xl:block w-[1px] h-10 bg-gray-200 shrink-0"></div>
-            <div className="block xl:hidden w-full h-[1px] bg-gray-100"></div>
 
-            <div className="flex-1 flex items-center px-4 py-2 w-full hover:bg-gray-50 xl:rounded-full transition-colors">
+            <div className="flex-1 flex items-center px-2 xl:px-4 py-3 xl:py-2 w-full hover:bg-gray-50 xl:rounded-full transition-colors border-b border-gray-100 xl:border-none">
               <div className="flex flex-col justify-center w-full">
                 <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-0.5">Keyword</span>
                 <input 
@@ -166,9 +165,8 @@ export default function SearchPage() {
             </div>
 
             <div className="hidden xl:block w-[1px] h-10 bg-gray-200 shrink-0"></div>
-            <div className="block xl:hidden w-full h-[1px] bg-gray-100"></div>
 
-            <div className="flex-1 flex items-center px-4 py-2 w-full hover:bg-gray-50 xl:rounded-full transition-colors relative group">
+            <div className="flex-1 flex items-center px-2 xl:px-4 py-3 xl:py-2 w-full hover:bg-gray-50 xl:rounded-full transition-colors relative group border-b border-gray-100 xl:border-none">
               <div className="flex flex-col justify-center w-full">
                 <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-0.5">Quantity</span>
                 <CustomDropdown 
@@ -180,9 +178,8 @@ export default function SearchPage() {
             </div>
 
             <div className="hidden xl:block w-[1px] h-10 bg-gray-200 shrink-0"></div>
-            <div className="block xl:hidden w-full h-[1px] bg-gray-100"></div>
 
-            <div className="flex-[1.2] flex items-center px-4 py-2 w-full hover:bg-gray-50 xl:rounded-full transition-colors relative group">
+            <div className="flex-[1.2] flex items-center px-2 xl:px-4 py-3 xl:py-2 w-full hover:bg-gray-50 xl:rounded-full transition-colors relative group border-b border-gray-100 xl:border-none">
               <div className="flex flex-col justify-center w-full">
                 <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-0.5">Service</span>
                 <CustomDropdown 
@@ -195,9 +192,8 @@ export default function SearchPage() {
             </div>
 
             <div className="hidden xl:block w-[1px] h-10 bg-gray-200 shrink-0"></div>
-            <div className="block xl:hidden w-full h-[1px] bg-gray-100"></div>
 
-            <div className="flex-[1.2] flex items-center pl-4 pr-2 py-2 w-full hover:bg-gray-50 rounded-b-[1.5rem] xl:rounded-full transition-colors relative group">
+            <div className="flex-[1.2] flex items-center px-2 xl:px-4 py-3 xl:py-2 w-full hover:bg-gray-50 xl:rounded-full transition-colors relative group">
               <div className="flex flex-col justify-center w-full">
                 <span className="text-[10px] font-extrabold text-gray-400 uppercase tracking-widest mb-0.5">For</span>
                 <CustomDropdown 
@@ -207,12 +203,12 @@ export default function SearchPage() {
                   minWidth="min-w-[200px]"
                 />
               </div>
-              
-              <button className="h-[52px] w-full xl:w-auto xl:px-8 bg-[#EA580C] hover:bg-[#D84A06] rounded-xl xl:rounded-full flex items-center justify-center text-white shrink-0 transition-colors shadow-md ml-3">
-                <Search className="w-5 h-5 xl:mr-2" />
-                <span className="hidden xl:block font-bold text-[15px]">Search</span>
-              </button>
             </div>
+            
+            <button className="h-[52px] w-full xl:w-auto xl:px-8 bg-[#EA580C] hover:bg-[#D84A06] rounded-xl xl:rounded-full flex items-center justify-center text-white shrink-0 transition-colors shadow-md mt-4 xl:mt-0 xl:ml-2">
+              <Search className="w-5 h-5 mr-2" />
+              <span className="font-bold text-[15px]">Search</span>
+            </button>
 
           </div>
 
@@ -232,11 +228,11 @@ export default function SearchPage() {
                     <button 
                       onClick={(e) => {
                         e.preventDefault();
-                        detectLocationOnDemand();
+                        alert("To allow location access:\n\n1. Click the Lock (🔒) or Info (ⓘ) icon next to the website URL at the top.\n2. Go to Permissions / Site Settings.\n3. Turn ON Location.\n4. Refresh this page.");
                       }} 
                       className="font-bold underline hover:text-[#B45309] focus:outline-none"
                     >
-                      allow in browser settings
+                      see how to allow
                     </button>
                   </span>
                 </div>
