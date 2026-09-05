@@ -101,8 +101,7 @@ export default function SearchPage() {
           setLocationDenied(true);
           setShowAlert(true);
           setIsLocating(false);
-        },
-        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        }
       );
     } else {
       alert("Location access requires a secure connection (HTTPS).");
@@ -328,7 +327,7 @@ export default function SearchPage() {
 
         <div className="w-full max-w-[1300px] flex flex-col mt-8">
           
-          <div className="results-header flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-gray-200 pb-5 mb-12 gap-4">
+          <div className="results-header relative z-50 flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-gray-200 pb-5 mb-12 gap-4">
             <div className="flex flex-col">
               <h2 className="text-[20px] md:text-[24px] font-extrabold text-brand-navy">0 results found</h2>
               <p className="text-[14px] text-gray-500 font-medium mt-1">within 5 km of your location</p>
@@ -347,7 +346,7 @@ export default function SearchPage() {
             </div>
           </div>
 
-          <div className="empty-state flex flex-col items-center justify-center text-center py-16 bg-white rounded-3xl border border-gray-100 shadow-sm">
+          <div className="empty-state flex flex-col items-center justify-center text-center py-16 bg-white rounded-3xl border border-gray-100 shadow-sm relative z-40">
             <div className="w-[72px] h-[72px] mb-6 flex items-center justify-center bg-gray-50 rounded-full">
               <Search className="w-8 h-8 text-gray-300" strokeWidth={2.5} />
             </div>

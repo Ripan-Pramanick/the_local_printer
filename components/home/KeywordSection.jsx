@@ -143,6 +143,7 @@ export default function KeywordSection() {
           </p>
         </div>
 
+        {/* items-start added to fix the expanding gap issue */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-start">
           {keywordCategories.map((category, i) => {
             const Icon = category.icon;
@@ -153,7 +154,7 @@ export default function KeywordSection() {
             return (
               <div 
                 key={i} 
-                className={`kw-card opacity-0 flex flex-col h-fit bg-white/[0.04] rounded-2xl border border-white/5 p-6 transition-all duration-300 hover:-translate-y-1 group/card ${category.hoverShadowClass} ${category.hoverBorderClass}`}
+                className={`kw-card opacity-0 flex flex-col bg-white/[0.04] rounded-2xl border border-white/5 p-6 transition-all duration-300 hover:-translate-y-1 group/card ${category.hoverShadowClass} ${category.hoverBorderClass}`}
               >
                 
                 <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-6 mx-auto shrink-0 ${category.bgClass}`}>
@@ -164,7 +165,7 @@ export default function KeywordSection() {
                   {category.title}
                 </h3>
                 
-                <ul className="flex flex-col">
+                <ul className={`flex flex-col ${!isExpanded ? 'min-h-[240px]' : ''}`}>
                   {displayItems.map((item, j) => (
                     <li 
                       key={j} 

@@ -46,18 +46,17 @@ export default function HeroSection() {
     >
       <div className="absolute bottom-0 left-0 w-full h-[400px] bg-[radial-gradient(ellipse_at_bottom,#F45116_0%,transparent_65%)] opacity-40 pointer-events-none z-0"></div>
 
-      
       <div className="flex-1 flex flex-col justify-center items-center w-full px-4 pt-[120px] pb-16 relative z-10">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center w-full mt-4 md:mt-0">
           
           <h1 className="hero-element text-[38px] sm:text-[48px] md:text-[56px] font-extrabold text-white tracking-tight mb-4 leading-[1.15]">
-            Find <span className="text-brand-orange">Local Printers</span><br />
-            & <span className="text-brand-orange">Designers</span> Near You
+            Find Direct <span className="text-brand-orange">Local Printers</span>,<br className="hidden md:block" />
+            for any <span className="text-brand-orange">Customization</span> Near You.
           </h1>
           
-          <p className="hero-element text-white/80 text-[15px] md:text-[16px] max-w-[620px] mx-auto mb-8 font-normal leading-relaxed">
-            Connecting you to instant printing solutions from nearby verified<br className="hidden sm:inline" /> 
-            {' '}businesses — fast, effortless, and cost-effective.
+          <p className="hero-element text-white/80 text-[15px] md:text-[16px] max-w-[700px] mx-auto mb-8 font-normal leading-relaxed">
+            <span className="font-semibold text-white">No Mediator, No Freelancer, No Agency so direct reach.</span><br className="hidden sm:block" /> 
+            Connecting you to instant printing solutions from nearby verified businesses — fast, effortless, and cost-effective.
           </p>
 
           <div className="hero-element flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-10 w-full sm:w-auto">
