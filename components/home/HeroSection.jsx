@@ -20,7 +20,7 @@ const categories = [
   { name: 'DTF / DTG', icon: Layers, href: '/categories/dtf-dtg' },
   { name: 'Laser Cutting', icon: Scissors, href: '/categories/laser-cutting' },
   { name: '3D Printing', icon: Box, href: '/categories/3d-printing' },
-  { name: 'Graphic Design', icon: Palette, href: '/categories/graphic-design' },
+
 ];
 
 export default function HeroSection() {

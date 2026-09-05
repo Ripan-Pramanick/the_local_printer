@@ -10,7 +10,7 @@ const stats = [
   { value: 10, label: 'FLEX PRINTERS', suffix: 'k+' },
   { value: 9, label: 'DIGITAL PRINTERS', suffix: 'k+' },
   { value: 20, label: 'T-SHIRT PRINTERS', suffix: 'k+' },
-  { value: 30, label: 'GRAPHIC DESIGNERS', suffix: 'k+' },
+
   { value: 50, label: 'CITIES COVERED', suffix: '+' },
 ];
 

@@ -135,7 +135,7 @@ export default function KeywordSection() {
               BROWSE & DISCOVER
             </span>
           </div>
-          <h2 className="text-[32px] md:text-[40px] font-extrabold text-white text-center tracking-tight leading-tight">
+          <h2 className="text-[32px] md:text-[40px] font-extrabold  text-[#F45116] text-center tracking-tight leading-tight">
             Find Exactly What You Need
           </h2>
           <p className="text-[15px] text-white/60 text-center mt-4 max-w-xl">
@@ -154,7 +154,7 @@ export default function KeywordSection() {
             return (
               <div 
                 key={i} 
-                className={`kw-card opacity-0 flex flex-col bg-white/[0.04] rounded-2xl border border-white/5 p-6 transition-all duration-300 hover:-translate-y-1 group/card ${category.hoverShadowClass} ${category.hoverBorderClass}`}
+                className={`kw-card opacity-0 flex flex-col bg-[#1F466B] rounded-2xl border border-white/5 p-6 transition-all duration-300 hover:-translate-y-1 group/card ${category.hoverShadowClass} ${category.hoverBorderClass}`}
               >
                 
                 <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-6 mx-auto shrink-0 ${category.bgClass}`}>
